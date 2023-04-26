@@ -1,0 +1,170 @@
+﻿{
+	//***** Alert *****
+	"alert test": {
+		"prefix": "al_Test",
+		"body": [
+			"alert('${1:test} = ' + ${2:Param});"
+		],
+		"description": "Вывод чего либо в лог"
+	},
+	"alert tools.object_to_text": {
+		"prefix": "al_t_ObjToTxt",
+		"body": [
+			"alert('${1:object} = ' + tools.object_to_text(${1:object}, 'json'));"
+		],
+		"description": "Преобразует массив или объект в строку и выводит в лог"
+	},
+	//********************************************************************************
+	//***** Встроенные функции *****
+	"OptInt": {
+		"prefix": "f_OptInt",
+		"body": [
+			"OptInt(${1:arg1}, ${2:defaultVal})"
+		],
+		"description": "Преобразует значение аргумента к целому неотрицательному числу (округление производится в меньшую сторону). Если основной аргумент не может быть преобразован к целому неотрицательному числу, функция возвращает второй аргумент (не обязательно числового типа) или значение undefined без прерывания выполняемого кода (если второй аргумент отсутствует)."
+	},
+	"OptReal": {
+		"prefix": "f_OptReal",
+		"body": [
+			"OptReal(${1:arg1}, ${2:defaultVal})"
+		],
+		"description": " Преобразует значение аргумента к действительному числу. Если основной аргумент не может быть преобразован к действительному числу, функция возвращает второй аргумент (не обязательно числового типа) или значение undefined без прерывания выполняемого кода (если второй аргумент отсутствует)."
+	},
+	"StrRealFixed": {
+		"prefix": "f_StrRealFixed",
+		"body": [
+			"StrRealFixed(${1:arg1}, ${2:iNum})"
+		],
+		"description": "Преобразует числовой аргумент в строку в формате действительного числа с фиксированным числом знаков в дробной части (с фиксированной точкой)."
+	},
+	"StrReplace": {
+		"prefix": "f_StrReplace",
+		"body": [
+			"StrReplace(${1:str}, ${2:subStr}, ${3:newSubStr})"
+		],
+		"description": "Заменяет все вхождения одной подстроки на другую в исходной строке, если такие вхождения имеются."
+	},
+	"StrLowerCase": {
+		"prefix": "f_StrLowerCase",
+		"body": [
+		"StrLowerCase(${1:str})"
+		],
+		"description": "Переводит все символы строки в нижний регистр."
+	},
+	"ArrayCount": {
+		"prefix": "f_ArrayCount",
+		"body": [
+			"ArrayCount(${1:array})"
+		],
+		"description": "Возвращает количество элементов массива"
+	},
+	"ArrayMerge": {
+		"prefix": "f_ArrayMerge",
+		"body": [
+			"ArrayMerge(${1:array}, '${2:sArrElem}', '${3:;}')"
+		],
+		"description": "Возвращает строку, полученную путем соединения данных из элементов массива."
+	},
+	"ObtainChildByKey": {
+		"prefix": "f_ObtainChildByKey",
+		"body": [
+			"custom_elems.ObtainChildByKey('${1:sChildElemName}').value"
+		],
+		"description": "Проверяет наличие элемента с указанным ключем и добавляет таковой в случае его отсутствия (Используется в основном чтобы записать значение в дочерний элемент / кастомное поле)"
+	},
+	"GetOptChildByKey": {
+		"prefix": "f_GetOptChildByKey",
+		"body": [
+			"custom_elems.GetOptChildByKey('${1:sChildElemName}', ${2:defaultVal}).value"
+		],
+		"description": "Получить значение дочернего элемента / кастомного поля по ключу"
+	},
+	//********************************************************************************
+	//***** tools *****
+	"tools.object_to_text": {
+		"prefix": "t_ObjToTxt",
+		"body": [
+			"tools.object_to_text(${1:object}, 'json')"
+		],
+		"description": "Преобразует массив или объект в строку"
+	},
+	"tools.create_notification": {
+		"prefix": "t_CreateNotif",
+		"body": [
+			"tools.create_notification('${1:sCodeTypeNotif}', ${2:iPersonID}, '${3:sTextNotif}', ${4:iSecondObjectID})"
+		],
+		"description": "Создает новое неотправленное уведомление"
+	},
+	"tools_web.get_web_param": {
+		"prefix": "t_w_GetWebParam",
+		"body": [
+			"tools_web.get_web_param(curParams, '${1:sWebParam}', '', true)"
+		],
+		"description": "Получаем значение из переменной шаблона/раздела портала"
+	},
+	"tools.open_doc": {
+		"prefix": "t_OpenDoc",
+		"body": [
+			"tools.open_doc(${1:iDocID})"
+		],
+		"description": "Открывает XML-документ по указанному ID объекта"
+	},
+	"tools.read_object": {
+		"prefix": "t_ReadObj",
+		"body": [
+			"tools.read_object(${1:sObj})"
+		],
+		"description": "Преобразует строку в формате json в объект"
+	},
+	"tools.call_code_library_method": {
+		"prefix": "t_CallLib",
+		"body": [
+			"tools.call_code_library_method('${1:sCodeLib}', '${2:sMethodName}', [${3:Param1}, ${4:Param2}])"
+		],
+		"description": "Вызов метода из библиотеки программного кода"
+	},
+	//********************************************************************************
+	//***** XAML *****
+	"htmlbox": {
+		"prefix": "xaml_HtmlBox",
+		"body": [
+			"HTMLBox Dynamic=\"true\">",
+			"	<![CDATA[",
+			"		$1",
+			"	]]>",
+			"</HTMLBox>"
+		],
+		"description": "XAML разметка, Отображает HTML код"
+	},
+	//********************************************************************************
+	//***** Other WT *****
+	"wt_sql_request": {
+		"prefix": "wt_SqlRequest",
+		"body": [
+			"${1:sSqlReq} = \"",
+			"	$2",
+			"\";",
+			"${3:arrResult} = ArraySelectAll(XQuery(\"sql: \" + ${1:sSqlReq}));"
+		],
+		"description": "Конструкция для SQL запроса"
+	},
+	"wt_forin": {
+		"prefix": "wt_forin",
+		"body": [
+			"for (${2:arrElem} in ${1:arrResult}) ",
+			"{",
+			"	$3",
+			"}"
+		],
+		"description": "Конструкция for in"
+	},
+	"TopElem": {
+		"prefix": "wt_TopElem",
+		"body": [
+			"${2:doc} = tools.open_doc(${1:iDocID});",
+			"${3:teDoc} = ${2:doc}.TopElem;"
+		],
+		"description": "Возвращает корневой элемент в документе"
+	}
+	//********************************************************************************
+}
